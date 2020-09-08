@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import {EmpService} from 'src/app/shared/emp.service'
+import {JsonDataService} from 'src/app/shared/json-data.service'
+import{JsonDto} from 'src/app/Data/json-dto'
+import { Subscription } from 'rxjs';
+import { toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'app-employee',
@@ -9,7 +14,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmployeeComponent implements OnInit {
 employeeForm:FormGroup;
-  constructor(private fb:FormBuilder, private http:HttpClient) { }
+// jsonData:JsonDto[];
+jsonData:any;
+sbscription:Subscription;
+selectedItem:string[];
+  constructor(private fb:FormBuilder, private http:HttpClient, private empService: EmpService, private _freeApiService: JsonDataService) { }
 
   ngOnInit(): void {
     this.employeeForm=this.fb.group({
@@ -17,12 +26,47 @@ employeeForm:FormGroup;
       email:[''],
       password:['']  
     });
+    this.GetEmployeeData()  
+    this.selectedItem=new Array<string>();
+    
+  }
+  ngAfterViewInit() {
+    //For JSON DATA CODE
+  //  this.sbscription= this._freeApiService.getJSONData().pipe(toArray()).subscribe(
+    this._freeApiService.getJSONData().subscribe(
+      data=>{
+        this.jsonData=data;    
+        console.log(this.jsonData);
+               
+      }
+    )
+    /// End
   }
   OnSubmit(){
-    this.http.post('https://localhost:44365/Employee',this.employeeForm.value).subscribe(x=>{
+    this.empService.saveEmployee(this.employeeForm.value).subscribe(x=>{
       console.log(x);
-    })
-    console.log(this.employeeForm)
+    })    
   }
+
+  GetEmployeeData(){
+    this.empService.getAllEmployee().subscribe(x=>{
+      console.log(x);
+    })   
+  }
+  getJsonDatId(e:any,id:string){
+    if(e.target.checked){
+      console.log(id,"checked");
+      this.selectedItem.push(id);
+
+    }
+    else{
+      console.log(id,"Unchecked");
+    this.selectedItem =  this.selectedItem.filter(m=>m!=id)
+
+    }
+    console.log(this.selectedItem);
+
+  }
+
 
 }

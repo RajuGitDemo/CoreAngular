@@ -5,11 +5,14 @@ import{ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { GridCheckBoxComponent } from './grid-check-box/grid-check-box.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    GridCheckBoxComponent   
   ],
   imports: [
     BrowserModule,

@@ -15,3 +15,10 @@
     <button type="submit" class="btn btn-primary">Submmit</button>
   </form>
 </div>
+<div class="container">
+  <label for="staticEmail" class="col-sm-2 col-form-label">Json Data</label>        
+  <div *ngFor='let jsondata of jsonData'>
+    <input type="checkbox" nam="{{jsondata.id}}" [Value]="jsondata.id" (change)="getJsonDatId($event,jsondata.id)">{{jsondata.title}}
+  </div>        
+
+</div>
