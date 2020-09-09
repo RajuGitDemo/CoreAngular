@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { GridCheckBoxComponent } from './grid-check-box/grid-check-box.component';
 import { ErrorControlMessageComponent } from './UIValidation/error-control-message/error-control-message.component';
+import { SimpleValidationComponent } from './UIValidationAnotherWay/simple-validation/simple-validation.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ErrorControlMessageComponent } from './UIValidation/error-control-messa
     AppComponent,
     EmployeeComponent,
     GridCheckBoxComponent,
-    ErrorControlMessageComponent   
+    ErrorControlMessageComponent,
+    SimpleValidationComponent,
   ],
   imports: [
     BrowserModule,
