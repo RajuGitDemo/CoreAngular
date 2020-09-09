@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {EmpService} from 'src/app/shared/emp.service'
 import {JsonDataService} from 'src/app/shared/json-data.service'
 import{JsonDto} from 'src/app/Data/json-dto'
 import { Subscription } from 'rxjs';
 import { toArray } from 'rxjs/operators';
+import{ValidationService} from 'src/app/UIValidation/validation.service'
 
 @Component({
   selector: 'app-employee',
@@ -23,7 +24,7 @@ selectedItem:string[];
   ngOnInit(): void {
     this.employeeForm=this.fb.group({
       name:[''],
-      email:[''],
+      email:['',[Validators.required, ValidationService.emailValidator]],
       password:['']  
     });
     this.GetEmployeeData()  

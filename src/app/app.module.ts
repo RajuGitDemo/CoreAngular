@@ -6,13 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { GridCheckBoxComponent } from './grid-check-box/grid-check-box.component';
+import { ErrorControlMessageComponent } from './UIValidation/error-control-message/error-control-message.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
-    GridCheckBoxComponent   
+    GridCheckBoxComponent,
+    ErrorControlMessageComponent   
   ],
   imports: [
     BrowserModule,
